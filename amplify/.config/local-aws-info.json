@@ -1,0 +1,7 @@
+{
+    "staging": {
+        "configLevel": "project",
+        "useProfile": false,
+        "awsConfigFilePath": "/Users/eduardos/.amplify/awscloudformation/JHHUE1aQth"
+    }
+}

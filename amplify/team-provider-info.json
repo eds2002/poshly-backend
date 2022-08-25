@@ -1,0 +1,15 @@
+{
+    "staging": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-moneypal-staging-11628-authRole",
+            "UnauthRoleArn": "arn:aws:iam::516831908443:role/amplify-moneypal-staging-11628-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::516831908443:role/amplify-moneypal-staging-11628-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-moneypal-staging-11628-deployment",
+            "UnauthRoleName": "amplify-moneypal-staging-11628-unauthRole",
+            "StackName": "amplify-moneypal-staging-11628",
+            "StackId": "arn:aws:cloudformation:us-east-1:516831908443:stack/amplify-moneypal-staging-11628/b94f2e00-1b6e-11ed-a3b3-0a598023b0ff",
+            "AmplifyAppId": "d25i8jaw8997uv"
+        }
+    }
+}

@@ -1,0 +1,14 @@
+**/*.env
+.env*local
+
+
+
+client/*.env
+server/*.env
+server/text.txt
+
+**/node_modules
+**/localhost-key.pem
+**/localhost.pem
+
+
