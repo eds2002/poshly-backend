@@ -51,6 +51,10 @@ app.get('/',(req,res)=>{
   res.send('works')
 })
 
+app.get('/testing',(req,res)=>{
+  res.send('This may work omg please bro please work pelase bro please wor kopelase')
+})
+
 
 
 
