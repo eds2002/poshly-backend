@@ -3,9 +3,7 @@
 
 
 
-client/*.env
-server/*.env
-server/text.txt
+text.txt
 
 **/node_modules
 **/localhost-key.pem
