@@ -6,17 +6,14 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
-router.use(cors())
-router.use(cookieParser())
-
 router.get('/',(request,response)=>{
   response.send('hey we work')
 })
 
 router.post('/register',(req,res)=>{
-  res.cookie('register','works')
   const {firstName, lastName, email, password} = req.body
   // TODO, search for given email, if email is found return error
+  db.connect()
   db.query('SELECT * FROM users WHERE email LIKE $1', [email],(error,result)=>{
     if(error) return res.status(400).json({code:400,error:error})
     if(result.rowCount != 0) return res.status(409).json({code:409,message:'Email already in use. Forgot password?'})
@@ -28,18 +25,22 @@ router.post('/register',(req,res)=>{
         return res.status(200).json({code:200,message:'Successfully inserted'})
       })
     })
+   db.end
   })
 })
 
 router.post('/login',(req,res)=>{
   const {email, password} = req.body
   // TODO, check if there is an email in the database that matches the email the user inputed
+  db.connect()
   db.query('SELECT * FROM users WHERE email LIKE $1', [email],(error,dbResult)=>{
     if(error) return res.status(400).json({code:400,error:error})
+	 console.log(error)
     if(dbResult.rows === 0) return res.status(409).json({code:409,message:'There is no account associated with that email.'})
     // TODO, compare password user inputed to the hashed password stored in the database
     bcrypt.compare(password,dbResult.rows[0].password,(error,result)=>{
       if(error) return res.status(400).json({code:400, message:error})
+	    console.log(error)
       if(!result) return res.status(401).json({code:401,message:'Incorrect password, try again.'}) 
       const currentUser = {
         userId: dbResult.rows[0].id,
@@ -52,7 +53,9 @@ router.post('/login',(req,res)=>{
       const accessToken = jwt.sign(currentUser,process.env.ACCESS_TOKEN_SECRET)
       res.status(201).json({code:201,message:`Success`, jwt:accessToken})
     })
+    db.end
   })
 })
+
 
 module.exports = router

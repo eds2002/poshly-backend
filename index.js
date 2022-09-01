@@ -25,8 +25,6 @@ const cookieParser = require('cookie-parser')
 //   })
 // };
 
-
-db.connect()
 const app = express();
 // Create an HTTP service.
 // http.createServer(app).listen(4000);
@@ -40,9 +38,8 @@ app.use(
   }),
 );
 app.use(bodyParser.json());
-app.use(cors({ origin: true, credentials: true }));;
-app.use(cookieParser())
-
+app.use(cors({origin: 'https://poshlyfinance.com',credentials: true}));
+//app.use(cors())
 app.use('/account',userItems)
 app.use('/user', user)
 app.use('/cookie', cookies)
@@ -71,7 +68,7 @@ app.get('/testing',(req,res)=>{
 
 // PLAID 
 
-const APP_PORT = process.env.APP_PORT || 3001
+const APP_PORT = process.env.APP_PORT || 3100
 const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID
 const PLAID_SECRET = process.env.PLAID_SECRET
 const PLAID_ENV = process.env.PLAID_ENV || 'sandbox'

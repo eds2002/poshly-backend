@@ -13,13 +13,5 @@ const db = new Client({
   database:DB_DATABASE
 })
 
-db.on("connect", ()=>{
-  console.log('Database connection')
-})
-
-db.on('end',()=>{
-  console.log('Connection end')
-})
-
 
 module.exports = db;
